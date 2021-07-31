@@ -42,7 +42,7 @@ const HeaderButton = () => {
         <Badge badgeContent={2} color="primary">
           <ShoppingCart />
         </Badge>
-        <Typography style={{ marginLeft: 10 }}>Boxes</Typography>
+        <Typography style={{ marginLeft: 10 }}>Cart</Typography>
       </Box>
     </Box>
   );
