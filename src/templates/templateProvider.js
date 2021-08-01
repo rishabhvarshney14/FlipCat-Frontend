@@ -1,7 +1,6 @@
 import { createContext } from "react";
 
 // UI Component
-import { CssBaseline } from "@material-ui/core";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const TemplateContext = createContext(null);

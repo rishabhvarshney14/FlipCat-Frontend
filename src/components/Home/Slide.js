@@ -90,7 +90,7 @@ const Slide = ({ title }) => {
         skipeable={false}
         centerMode
         autoPlay
-        autoPlaySpeed={1000}
+        autoPlaySpeed={10000}
         keyBoardControl
         showDots={false}
         removeArrowOnDeviceType={["tablet", "mobile"]}
