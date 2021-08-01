@@ -26,16 +26,17 @@ const Home = () => {
 
       <Box className={classes.component}>
         <Banner />
+
         <Slide title="Deals of the Day" />
+
+        <MidSection />
+
+        <Slide title="Suggested Items" />
+        <Slide title="Discounts for You" />
+        <Slide title="Suggested for You" />
+        <Slide title="Top Selection" />
+        <Slide title="More to Explore" />
       </Box>
-
-      <MidSection />
-
-      <Slide title="Suggested Items" />
-      <Slide title="Discounts for You" />
-      <Slide title="Suggested for You" />
-      <Slide title="Top Selection" />
-      <Slide title="More to Explore" />
     </div>
   );
 };
