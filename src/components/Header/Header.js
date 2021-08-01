@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // UI Components
 import { AppBar, Toolbar, makeStyles, withStyles } from "@material-ui/core";
@@ -19,6 +20,10 @@ const useStyle = makeStyles({
   component: {
     marginLeft: "12%",
   },
+  logoLink: {
+    textDecoration: "none",
+    color: "white",
+  },
 });
 
 // Update Styles
@@ -35,7 +40,9 @@ const Header = () => {
   return (
     <AppBar position="static" className={classes.header}>
       <ToolBar className={classes.component}>
-        <h3 className={classes.logo}>FlipCat</h3>
+        <Link to="/" className={classes.logoLink}>
+          <h3 className={classes.logo}>FlipCat</h3>
+        </Link>
         <SearchBar />
         <HeaderButton />
       </ToolBar>

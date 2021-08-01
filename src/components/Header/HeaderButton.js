@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-// UI Componets
+// UI Components
 import { Box, Button, makeStyles, Typography, Badge } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 
@@ -16,9 +17,13 @@ const useStyle = makeStyles({
   wrapper: {
     margin: " 0 5%  0 auto",
     display: "flex",
+
+    // Style for Childrens
     "& > *": {
       marginRight: 50,
       alignItems: "center",
+      textDecoration: "none",
+      color: "#FFF",
     },
   },
   container: {
@@ -32,18 +37,22 @@ const HeaderButton = () => {
 
   return (
     <Box className={classes.wrapper}>
-      <Button variant="contained" className={classes.login}>
-        Login
-      </Button>
+      <Link>
+        <Button variant="contained" className={classes.login}>
+          Login
+        </Button>
+      </Link>
 
-      <Typography style={{ marginTop: 5 }}>More</Typography>
+      <Link>
+        <Typography style={{ marginTop: 5 }}>More</Typography>
+      </Link>
 
-      <Box className={classes.container}>
+      <Link to="/cart" className={classes.container}>
         <Badge badgeContent={2} color="primary">
           <ShoppingCart />
         </Badge>
         <Typography style={{ marginLeft: 10 }}>Cart</Typography>
-      </Box>
+      </Link>
     </Box>
   );
 };

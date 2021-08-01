@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// SearchBar Component
 const SearchBar = () => {
   const classes = useStyles();
 

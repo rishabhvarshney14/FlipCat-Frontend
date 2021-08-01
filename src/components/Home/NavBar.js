@@ -10,7 +10,7 @@ import { navData } from "../../constants/data";
 const useStyle = makeStyles({
   component: {
     display: "flex",
-    margin: "55px 130px 0 130px",
+    margin: "5px 130px 0 130px",
     justifyContent: "space-between",
   },
   container: {

@@ -6,7 +6,6 @@ import Carousel from "react-material-ui-carousel";
 
 // Custom Data
 import { bannerData } from "../../constants/data";
-import { classExpression } from "@babel/types";
 
 // Styles
 const useStyles = makeStyles({
@@ -33,7 +32,7 @@ const Banner = () => {
       cycleNavigation
     >
       {bannerData.map((image) => (
-        <img className={classes.image} src={image} />
+        <img className={classes.image} src={image} alt="banner-img" />
       ))}
     </Carousel>
   );

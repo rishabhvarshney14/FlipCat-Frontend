@@ -1,0 +1,133 @@
+import React from "react";
+
+// Custom Data (Will remove later)
+import { products } from "../../constants/data";
+
+// UI Components
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import {
+  Box,
+  makeStyles,
+  Typography,
+  Button,
+  Divider,
+} from "@material-ui/core";
+
+// responsive attribute for 'react-multi-carousel'
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 5,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 3,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
+// Styles
+const useStyles = makeStyles({
+  component: {
+    marginTop: 12,
+    background: "#FFFFFF",
+  },
+  deal: {
+    display: "flex",
+    padding: "15px 20px",
+  },
+  dealText: {
+    fontSize: 22,
+    fontWeight: 600,
+    lineHeight: "32px",
+  },
+  dealButton: {
+    marginLeft: "auto",
+    background: "#2874f0",
+    borderRadius: 2,
+    fontSize: 13,
+  },
+  wrapper: {
+    padding: "25px 15px",
+  },
+  image: {
+    height: 150,
+    width: 200,
+  },
+  text: {
+    fontSize: 14,
+    marginTop: 5,
+  },
+});
+
+// Slide Component
+const Slide = ({ title }) => {
+  const classes = useStyles();
+
+  return (
+    <Box className={classes.component}>
+      <Box className={classes.deal}>
+        <Typography className={classes.dealText}>{title}</Typography>
+        <Button
+          className={classes.dealButton}
+          variant="contained"
+          color="primary"
+        >
+          View All
+        </Button>
+      </Box>
+
+      <Divider />
+
+      <Carousel
+        responsive={responsive}
+        infinite
+        draggable={false}
+        skipeable={false}
+        centerMode
+        autoPlay
+        autoPlaySpeed={1000}
+        keyBoardControl
+        showDots={false}
+        removeArrowOnDeviceType={["tablet", "mobile"]}
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-padding-40-px"
+        coontainerClass="carousel-container"
+      >
+        {products.map((product) => (
+          <Box textAlign="center" className={classes.wrapper}>
+            <img
+              className={classes.image}
+              src={product.url}
+              alt={product.title}
+            />
+
+            <Typography
+              className={classes.text}
+              style={{ fontWeight: 600, color: "#212121" }}
+            >
+              {product.title.shortTitle}
+            </Typography>
+
+            <Typography className={classes.text} style={{ color: "green" }}>
+              {product.discount}
+            </Typography>
+
+            <Typography
+              className={classes.text}
+              style={{ color: "#212121", opacity: 0.6 }}
+            >
+              {product.tagline}
+            </Typography>
+          </Box>
+        ))}
+      </Carousel>
+    </Box>
+  );
+};
+
+export default Slide;
