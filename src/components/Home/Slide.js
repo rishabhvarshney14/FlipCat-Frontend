@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // UI Components
 import Carousel from "react-multi-carousel";
@@ -96,31 +97,33 @@ const Slide = ({ title, products }) => {
         coontainerClass="carousel-container"
       >
         {products.map((product) => (
-          <Box textAlign="center" className={classes.wrapper}>
-            <img
-              className={classes.image}
-              src={product.url}
-              alt={product.title}
-            />
+          <Link to={`product/${product.id}`}>
+            <Box textAlign="center" className={classes.wrapper}>
+              <img
+                className={classes.image}
+                src={product.url}
+                alt={product.title}
+              />
 
-            <Typography
-              className={classes.text}
-              style={{ fontWeight: 600, color: "#212121" }}
-            >
-              {product.title.shortTitle}
-            </Typography>
+              <Typography
+                className={classes.text}
+                style={{ fontWeight: 600, color: "#212121" }}
+              >
+                {product.title.shortTitle}
+              </Typography>
 
-            <Typography className={classes.text} style={{ color: "green" }}>
-              {product.discount}
-            </Typography>
+              <Typography className={classes.text} style={{ color: "green" }}>
+                {product.discount}
+              </Typography>
 
-            <Typography
-              className={classes.text}
-              style={{ color: "#212121", opacity: 0.6 }}
-            >
-              {product.tagline}
-            </Typography>
-          </Box>
+              <Typography
+                className={classes.text}
+                style={{ color: "#212121", opacity: 0.6 }}
+              >
+                {product.tagline}
+              </Typography>
+            </Box>
+          </Link>
         ))}
       </Carousel>
     </Box>

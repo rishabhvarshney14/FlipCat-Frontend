@@ -22,6 +22,11 @@ const TemplateProvider = ({ children }) => {
           },
         },
       },
+      MuiTableCell: {
+        root: {
+          borderBottom: "none",
+        },
+      },
     },
   });
 

@@ -11,3 +11,12 @@ export const getProducts = () => async (dispatch) => {
     dispatch({ type: action.GET_PRODUCT_FAIL, payload: error.response });
   }
 };
+
+export const getProductDetails = (id) => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`${url}/products/${id}`);
+    dispatch({ type: action.GET_PRODUCT_DETAIL_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: action.GET_PRODUCT_DETAIL_FAIL, paylod: error.response });
+  }
+};
