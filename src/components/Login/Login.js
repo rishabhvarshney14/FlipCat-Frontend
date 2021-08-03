@@ -11,6 +11,9 @@ import {
   Button,
 } from "@material-ui/core";
 
+// API
+import { authenticateSignUp, authenticateLogIn } from "../../services/api";
+
 // Styles
 const useStyle = makeStyles({
   component: {
@@ -66,13 +69,38 @@ const useStyle = makeStyles({
     fontWeight: 600,
     cursor: "pointer",
   },
+  error: {
+    fontSize: 10,
+    color: "#ff6161",
+    marginTop: 10,
+    fontWeight: 600,
+    lineHeight: 0,
+  },
 });
 
 // LoginDialog Component
-const LoginDialog = ({ open, setOpen }) => {
+const LoginDialog = ({ open, setOpen, setAccount }) => {
   const classes = useStyle();
 
   const [isSignUp, setIsSignUp] = useState(false);
+
+  const signUpInitialValues = {
+    firstname: "",
+    lastname: "",
+    username: "",
+    email: "",
+    password: "",
+    phone: "",
+  };
+  const [signUpValues, setSignUpValue] = useState(signUpInitialValues);
+
+  const loginInitialValues = {
+    username: "",
+    password: "",
+  };
+  const [loginValues, setLoginValue] = useState(loginInitialValues);
+
+  const [error, setError] = useState(false);
 
   // set state 'open' to false
   const handleClose = () => {
@@ -94,17 +122,46 @@ const LoginDialog = ({ open, setOpen }) => {
     </Box>
   );
 
+  // Handle Login User
+  const loginUser = async () => {
+    let response = await authenticateLogIn(loginValues);
+    if (!response) {
+      setError(true);
+      return;
+    }
+    setAccount(loginValues.username);
+    handleClose();
+  };
+
   // Return the login content for the right side
   const getLoginContent = () => (
     <Box className={classes.container}>
-      <TextField name="username" label="Enter Email/Mobile number" />
-      <TextField name="password" label="Enter Password" />
+      <TextField
+        name="username"
+        onChange={(event) => onInputChange(event, "login")}
+        label="Enter Email/Mobile number"
+      />
+      <TextField
+        name="password"
+        onChange={(event) => onInputChange(event, "login")}
+        label="Enter Password"
+      />
+
+      {error && (
+        <Typography className={classes.error}>
+          Invalid Username or Password
+        </Typography>
+      )}
 
       <Typography className={classes.text}>
         By continuing, you agree to FlipCat's terms of Use and Privacy Policy.
       </Typography>
 
-      <Button variant="contained" className={classes.loginButton}>
+      <Button
+        variant="contained"
+        onClick={loginUser}
+        className={classes.loginButton}
+      >
         Login
       </Button>
 
@@ -122,21 +179,75 @@ const LoginDialog = ({ open, setOpen }) => {
     </Box>
   );
 
+  // Handle SignUp User
+  const signupUser = async () => {
+    let response = await authenticateSignUp(signUpValues);
+    if (!response) return;
+    setAccount(signUpValues.username);
+    handleClose();
+  };
+
+  // Function to Handle SignUp Values
+  const onInputChange = (event, type) => {
+    let stateFunc = null;
+    let stateValue = null;
+
+    if (type === "sigup") {
+      stateFunc = setSignUpValue;
+      stateValue = signUpValues;
+    } else {
+      stateFunc = setLoginValue;
+      stateValue = loginValues;
+    }
+    stateFunc({
+      ...stateValue,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   // Return the signup content for the left side
   const getSignupContent = () => (
     <Box className={classes.container}>
-      <TextField name="firstname" label="Enter First Name" />
-      <TextField name="secondname" label="Enter Last Name" />
-      <TextField name="username" label="Enter Username" />
-      <TextField name="email" label="Enter Email" />
-      <TextField name="password" label="Enter Password" />
-      <TextField name="phone" label="Enter Mobile number" />
+      <TextField
+        onChange={(event) => onInputChange(event, "signup")}
+        name="firstname"
+        label="Enter First Name"
+      />
+      <TextField
+        onChange={(event) => onInputChange(event, "signup")}
+        name="lastname"
+        label="Enter Last Name"
+      />
+      <TextField
+        onChange={(event) => onInputChange(event, "signup")}
+        name="username"
+        label="Enter Username"
+      />
+      <TextField
+        onChange={(event) => onInputChange(event, "signup")}
+        name="email"
+        label="Enter Email"
+      />
+      <TextField
+        onChange={(event) => onInputChange(event, "signup")}
+        name="password"
+        label="Enter Password"
+      />
+      <TextField
+        onChange={(event) => onInputChange(event, "signup")}
+        name="phone"
+        label="Enter Mobile number"
+      />
 
       <Typography className={classes.text}>
         By continuing, you agree to FlipCat's terms of Use and Privacy Policy.
       </Typography>
 
-      <Button variant="contained" className={classes.loginButton}>
+      <Button
+        variant="contained"
+        className={classes.loginButton}
+        onClick={() => signupUser()}
+      >
         Sign Up
       </Button>
 
