@@ -154,7 +154,10 @@ const LoginDialog = ({ open, setOpen }) => {
       <DialogContent className={classes.component}>
         <Box style={{ display: "flex" }}>
           {isSignUp
-            ? getLeftSide("Sign Up", "This is sign up text")
+            ? getLeftSide(
+                "Sign Up",
+                "Sign Up with your E-mail/Mobile Number to continue."
+              )
             : getLeftSide(
                 "Login",
                 "Get acess to your Orders, Wishlist and Recommendations"
