@@ -77,6 +77,7 @@ const LoginDialog = ({ open, setOpen }) => {
   // set state 'open' to false
   const handleClose = () => {
     setOpen(false);
+    setIsSignUp(false);
   };
 
   // Set state 'isSignUp' to true if it is false else otherwise
@@ -155,7 +156,7 @@ const LoginDialog = ({ open, setOpen }) => {
         <Box style={{ display: "flex" }}>
           {isSignUp
             ? getLeftSide(
-                "Sign Up",
+                "Looks like you're new here!",
                 "Sign Up with your E-mail/Mobile Number to continue."
               )
             : getLeftSide(
