@@ -1,5 +1,8 @@
 import React from "react";
 import clsx from "clsx";
+import { addToCart } from "../../redux/actions/cartActions";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 // UI Components
 import { Box, Button, makeStyles } from "@material-ui/core";
@@ -34,12 +37,22 @@ const useStyle = makeStyles({
 // ActionItems Component
 const ActionItems = ({ product }) => {
   const classes = useStyle();
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+
+  // Function to handle Add to Cart button
+  const handleAddToCart = () => {
+    dispatch(addToCart(product.id));
+    history.push("/cart");
+  };
 
   return (
     <Box className={classes.leftContainer}>
       <img className={classes.image} src={product.detailUrl} />
 
       <Button
+        onClick={() => handleAddToCart()}
         variant="contained"
         className={clsx(classes.button, classes.addToCart)}
       >
