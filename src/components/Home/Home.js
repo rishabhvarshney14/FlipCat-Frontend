@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 // UI Component
 import { Box, makeStyles } from "@material-ui/core";
@@ -8,6 +9,9 @@ import NavBar from "./NavBar";
 import Banner from "./Banner";
 import Slide from "./Slide";
 import MidSection from "./MidSection";
+
+// Redux Actions
+import { getProducts as productsList } from "../../redux/actions/productActions";
 
 // Styles
 const useStyles = makeStyles({
@@ -20,6 +24,13 @@ const useStyles = makeStyles({
 // Home Component
 const Home = () => {
   const classes = useStyles();
+  const { products } = useSelector((state) => state.getProducts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(productsList());
+  }, [dispatch]);
+
   return (
     <div>
       <NavBar />
@@ -27,15 +38,15 @@ const Home = () => {
       <Box className={classes.component}>
         <Banner />
 
-        <Slide title="Deals of the Day" />
+        <Slide title="Deals of the Day" products={products} />
 
         <MidSection />
 
-        <Slide title="Suggested Items" />
-        <Slide title="Discounts for You" />
-        <Slide title="Suggested for You" />
-        <Slide title="Top Selection" />
-        <Slide title="More to Explore" />
+        <Slide title="Suggested Items" products={products} />
+        <Slide title="Discounts for You" products={products} />
+        <Slide title="Suggested for You" products={products} />
+        <Slide title="Top Selection" products={products} />
+        <Slide title="More to Explore" products={products} />
       </Box>
     </div>
   );

@@ -1,8 +1,5 @@
 import React from "react";
 
-// Custom Data (Will remove later)
-import { products } from "../../constants/data";
-
 // UI Components
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -65,7 +62,7 @@ const useStyles = makeStyles({
 });
 
 // Slide Component
-const Slide = ({ title }) => {
+const Slide = ({ title, products }) => {
   const classes = useStyles();
 
   return (
