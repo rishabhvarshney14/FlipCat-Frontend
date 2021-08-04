@@ -145,6 +145,7 @@ const RightSideContent = (props) => {
       <TextField
         onChange={(event) => onInputChange(event, "signup")}
         name="password"
+        type="password"
         label="Enter Password"
       />
       <TextField
@@ -187,6 +188,7 @@ const RightSideContent = (props) => {
         name="password"
         onChange={(event) => onInputChange(event, "login")}
         label="Enter Password"
+        type="password"
       />
 
       {error && (

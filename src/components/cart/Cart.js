@@ -69,7 +69,11 @@ const Cart = () => {
             ))}
 
             <Box className={classes.bottom}>
-              <Button className={classes.placeOrder} variant="contained">
+              <Button
+                onClick={() => alert("This is not implemented yet.")}
+                className={classes.placeOrder}
+                variant="contained"
+              >
                 PLACE ORDER
               </Button>
             </Box>

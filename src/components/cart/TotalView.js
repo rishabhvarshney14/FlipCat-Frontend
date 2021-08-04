@@ -35,20 +35,16 @@ const TotalView = ({ cartItems }) => {
   const [discount, setDiscount] = useState(0);
 
   useEffect(() => {
-    totalAmount();
-  }, [cartItems]);
-
-  const totalAmount = () => {
     let price = 0,
       discount = 0;
+    // eslint-disable-next-line
     cartItems.map((item) => {
       price += item.price.mrp;
       discount += item.price.mrp - item.price.cost;
     });
-
     setPrice(price);
     setDiscount(discount);
-  };
+  }, [cartItems]);
 
   return (
     <Box className={classes.component}>

@@ -45,7 +45,7 @@ const EmptyCart = () => {
   return (
     <Box className={classes.component}>
       <Box className={classes.container}>
-        <img src={emptycarturl} className={classes.image} />
+        <img src={emptycarturl} className={classes.image} alt="Empty Cart" />
         <Typography>Your cart is Empty!</Typography>
         <Typography>Add items to it now.</Typography>
         <Button

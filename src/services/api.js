@@ -1,11 +1,12 @@
 import axios from "axios";
 
-const url = "http://localhost:8000";
+// Urls
+import { URLs } from "../constants/urls";
 
 // Authenticate Sign Up of User
 export const authenticateSignUp = async (user) => {
   try {
-    return await axios.post(`${url}/signup`, user);
+    return await axios.post(URLs.signup, user);
   } catch (error) {
     console.log("Error while calling SignUp API");
   }
@@ -14,7 +15,7 @@ export const authenticateSignUp = async (user) => {
 // Authenticate Log In of User
 export const authenticateLogIn = async (user) => {
   try {
-    return await axios.post(`${url}/login`, user);
+    return await axios.post(URLs.login, user);
   } catch (error) {
     console.log("Error: ", error.message);
   }

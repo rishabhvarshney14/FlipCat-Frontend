@@ -47,9 +47,18 @@ const ActionItems = ({ product }) => {
     history.push("/cart");
   };
 
+  // Function to handle Buy Now button
+  const buyNow = async () => {
+    alert("This is not Implemented yet.");
+  };
+
   return (
     <Box className={classes.leftContainer}>
-      <img className={classes.image} src={product.detailUrl} />
+      <img
+        className={classes.image}
+        src={product.detailUrl}
+        alt={product.title}
+      />
 
       <Button
         onClick={() => handleAddToCart()}
@@ -63,6 +72,7 @@ const ActionItems = ({ product }) => {
       <Button
         variant="contained"
         className={clsx(classes.button, classes.buyNow)}
+        onClick={() => buyNow()}
       >
         <FlashOn />
         Buy Now
